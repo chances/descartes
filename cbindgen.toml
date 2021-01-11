@@ -1,0 +1,35 @@
+autogen_warning = """/* DO NOT MODIFY THIS MANUALLY! This file was generated using cbindgen.
+ * To generate this file:
+ *   1. Get the latest cbindgen using `cargo install --force cbindgen`
+ *      a. Alternatively, you can clone `https://github.com/eqrion/cbindgen` and use a tagged release
+ *   2. Run `rustup run nightly cbindgen --lockfile Cargo.lock --crate descartes -o ffi/descartes.h`
+ */"""
+
+language = "C"
+include_version = true
+braces = "SameLine"
+
+[export]
+prefix = "DESCARTES_"
+
+[parse]
+parse_deps = true
+include = ["nalgebra"]
+extra_bindings = ["nalgebra"]
+
+[fn]
+rename_args = "CamelCase"
+
+[struct]
+rename_fields = "PascalCase"
+derive_eq = true
+
+[enum]
+prefix_with_name = true
+derive_helper_methods = true
+
+[ptr]
+non_null_attribute = "_NonNull"
+
+[macro_expansion]
+bitflags = true
